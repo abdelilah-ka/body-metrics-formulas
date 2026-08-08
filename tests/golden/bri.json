@@ -1,0 +1,7 @@
+{
+  "note": "Case 1 is independently verified: computed via the equivalent algebraic form BRI = 364.2 - 365.5*sqrt(1-(WHtR/pi)^2) reported in a tertiary source summarizing Thomas et al. (2013), cross-checked against our own formula and confirmed identical algebraically. Case 2 is a self-derived regression case (not from the paper).",
+  "cases": [
+    { "heightCm": 160, "waistCm": 72, "expectedBri": 2.47, "tolerance": 0.01 },
+    { "heightCm": 170, "waistCm": 85, "expectedBri": 3.36, "tolerance": 0.05 }
+  ]
+}

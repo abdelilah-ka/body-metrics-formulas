@@ -1,0 +1,7 @@
+{
+  "note": "Standard reference case for the Mifflin-St Jeor equation, re-derived directly from the published formula (Mifflin MD, St Jeor ST et al., Am J Clin Nutr 1990).",
+  "cases": [
+    { "weightKg": 80, "heightCm": 180, "age": 25, "sex": "male", "expectedBmr": 1805 },
+    { "weightKg": 65, "heightCm": 165, "age": 30, "sex": "female", "expectedBmr": 1370.25 }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "body-metrics-formulas",
+  "version": "1.0.0",
+  "description": "Reference TypeScript implementations of emerging body-composition metrics (BRI, RFM, WHtR, ABSI, FFMI, LBM) plus protein and calorie-deficit calculators, validated against their source papers.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdelilah-ka/body-metrics-formulas.git"
+  },
+  "homepage": "https://thebodyindex.com",
+  "keywords": [
+    "body-roundness-index",
+    "bri",
+    "relative-fat-mass",
+    "rfm",
+    "waist-to-height-ratio",
+    "whtr",
+    "a-body-shape-index",
+    "absi",
+    "ffmi",
+    "body-composition",
+    "anthropometry"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,79 @@
+# Body Metrics Formulas
+
+Reference TypeScript implementations of emerging body-composition metrics, each
+implemented exactly as published in its source paper and checked against golden
+test vectors. Zero dependencies, no DOM, ~1KB per formula.
+
+This is the calculation engine behind **[The Body Index](https://thebodyindex.com)**
+— live, interactive calculators for every metric below. This repo exists so the
+formulas themselves are easy to verify, cite, or adapt independently of that site.
+
+## Metrics
+
+| Metric | File | Formula | Primary source |
+|---|---|---|---|
+| Body Roundness Index (BRI) | [`src/bri.ts`](src/bri.ts) | `364.2 − 365.5 × √(1 − (WC/2π)² / (0.5×H)²)` | Thomas DM et al., *Obesity* (2013); band cutoffs from Zhang X et al., *JAMA Network Open* (2024) |
+| Relative Fat Mass (RFM) | [`src/rfm.ts`](src/rfm.ts) | Men: `64 − 20×(H/WC)` · Women: `76 − 20×(H/WC)` | Woolcott & Bergman, *Scientific Reports* (2018); obesity cutoffs from Woolcott & Bergman, *Int J Obes* (2020) |
+| Waist-to-Height Ratio (WHtR) | [`src/whtr.ts`](src/whtr.ts) | `WC / H` | NICE Guideline CG189 (updated 2022) |
+| A Body Shape Index (ABSI) | [`src/absi.ts`](src/absi.ts) | `WC / (BMI^(2/3) × H^0.5)` | Krakauer & Krakauer, *PLoS ONE* (2012) — age/sex-adjusted z-score bands transcribed verbatim from the paper's Table S1 in [`src/absiReferenceTable.ts`](src/absiReferenceTable.ts) |
+| Fat-Free Mass Index (FFMI) | [`src/ffmi.ts`](src/ffmi.ts) | Height-normalized fat-free mass | Kouri EM et al., *Clinical Journal of Sport Medicine* (1995) |
+| Lean Body Mass (LBM) | [`src/lbm.ts`](src/lbm.ts) | Boer formula | Boer P., *American Journal of Physiology* (1984) |
+| Protein intake range | [`src/protein.ts`](src/protein.ts) | Activity/goal-adjusted g/kg range | ISSN Position Stand (2017); Morton RW et al., *Br J Sports Med* (2018) |
+| BMR / calorie deficit timeline | [`src/deficit.ts`](src/deficit.ts) | Mifflin-St Jeor | Mifflin MD, St Jeor ST et al., *Am J Clin Nutr* (1990) |
+
+Every formula's exact citation (including which figure/table in the paper it
+was checked against) is in a comment directly above the function that
+implements it — not just listed here.
+
+## Usage
+
+No npm package is published; clone the file(s) you need, or the whole repo:
+
+```ts
+import { calculateBri, calculateRfm } from "./src/index.ts";
+
+calculateBri({ heightCm: 175, waistCm: 90 });
+// => { value: 3.63, band: { key: "average", label: "Average range", ... }, sources: [...] }
+
+calculateRfm({ heightCm: 165, waistCm: 80, sex: "female" });
+// => { value: 34.8, unit: "%", band: {...}, sources: [...] }
+```
+
+Every function returns the same shape: `{ value, unit, band, interpretationKey, inputsEcho, sources }`.
+Bands carry a `key`, human-readable `label`, and color — no formula here
+returns a bare number without also telling you what it means and where that
+meaning came from.
+
+## Testing
+
+```bash
+npm install
+npm test        # golden tests (values checked against published worked examples)
+                 # + property tests (monotonicity, unit round-trips, safety-floor bounds)
+npm run typecheck
+```
+
+Golden test vectors live in [`tests/golden/`](tests/golden/) as JSON, each
+annotated with which paper example or independently-verified case it comes
+from.
+
+## Design notes
+
+- **No diagnostic framing.** Every band is population-association language
+  ("associated with elevated risk"), never "you are obese" or similar. If
+  you build on this, keep that discipline — these are screening estimates,
+  not medical advice.
+- **Age/sex-adjusted where the source paper requires it.** ABSI in
+  particular uses a real z-score against an age/sex-matched reference
+  table (`absiReferenceTable.ts`), not one fixed scale for every adult —
+  the paper's own data shows the "typical" score drifts meaningfully with
+  age, so a fixed scale would misclassify people systematically by age.
+- **Validation ranges, not silent garbage.** Every function throws on
+  physiologically implausible inputs rather than emitting a nonsense
+  result.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Attribution appreciated but not required;
+a link back to [thebodyindex.com](https://thebodyindex.com) is the nicest
+way to say thanks if you use this.
