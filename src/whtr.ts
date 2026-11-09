@@ -7,7 +7,11 @@ export interface WhtrInputs {
   waistCm: number;
 }
 
-/** Bands per NICE 2022 guidance framing ("keep your waist to less than half your height"). */
+/**
+ * Bands per NICE NG246 rec 1.9.14 (0.4-0.49 healthy, 0.5-0.59 increased, 0.6+ high central adiposity),
+ * https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity
+ * (read 2026-11-09). The "possible underweight" band below 0.4 is this site's own framing, not NICE's.
+ */
 export const WHTR_BANDS: Band[] = [
   { key: "possible-underweight", label: "Possible underweight", max: 0.4, ...BAND_COLORS.green },
   { key: "healthy", label: "Healthy", max: 0.5, ...BAND_COLORS.teal },
@@ -16,7 +20,7 @@ export const WHTR_BANDS: Band[] = [
 ];
 
 export const WHTR_SOURCES: Source[] = [
-  { citation: "NICE Guideline (CG189, updated 2022) — waist-to-height ratio guidance." },
+  { citation: "NICE guideline NG246, Overweight and obesity management (2025, updated 2026), recommendation 1.9.14.", url: "https://www.nice.org.uk/guidance/ng246" },
 ];
 
 /** WHtR = Waist ÷ Height (same units). */

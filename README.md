@@ -14,7 +14,7 @@ formulas themselves are easy to verify, cite, or adapt independently of that sit
 |---|---|---|---|
 | Body Roundness Index (BRI) | [`src/bri.ts`](src/bri.ts) | `364.2 − 365.5 × √(1 − (WC/2π)² / (0.5×H)²)` | Thomas DM et al., *Obesity* (2013); band cutoffs from Zhang X et al., *JAMA Network Open* (2024) |
 | Relative Fat Mass (RFM) | [`src/rfm.ts`](src/rfm.ts) | Men: `64 − 20×(H/WC)` · Women: `76 − 20×(H/WC)` | Woolcott & Bergman, *Scientific Reports* (2018); obesity cutoffs from Woolcott & Bergman, *Int J Obes* (2020) |
-| Waist-to-Height Ratio (WHtR) | [`src/whtr.ts`](src/whtr.ts) | `WC / H` | NICE Guideline CG189 (updated 2022) |
+| Waist-to-Height Ratio (WHtR) | [`src/whtr.ts`](src/whtr.ts) | `WC / H` | NICE guideline [NG246](https://www.nice.org.uk/guidance/ng246) (2025, updated 2026), rec. 1.9.14, which replaced CG189 |
 | A Body Shape Index (ABSI) | [`src/absi.ts`](src/absi.ts) | `WC / (BMI^(2/3) × H^0.5)` | Krakauer & Krakauer, *PLoS ONE* (2012) — age/sex-adjusted z-score bands transcribed verbatim from the paper's Table S1 in [`src/absiReferenceTable.ts`](src/absiReferenceTable.ts) |
 | Fat-Free Mass Index (FFMI) | [`src/ffmi.ts`](src/ffmi.ts) | Height-normalized fat-free mass | Kouri EM et al., *Clinical Journal of Sport Medicine* (1995) |
 | Lean Body Mass (LBM) | [`src/lbm.ts`](src/lbm.ts) | Boer formula | Boer P., *American Journal of Physiology* (1984) |
