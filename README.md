@@ -100,3 +100,9 @@ from.
 MIT — see [LICENSE](LICENSE). Attribution appreciated but not required;
 a link back to [thebodyindex.com](https://thebodyindex.com) is the nicest
 way to say thanks if you use this.
+
+## Releasing
+
+Bump `version` in `package.json`, commit, then publish a GitHub release tagged with that version
+(for example `v1.2.0`). [`.github/workflows/publish.yml`](.github/workflows/publish.yml) runs the tests and
+the build, then publishes to npm through trusted publishing, with provenance. No npm token is stored.
