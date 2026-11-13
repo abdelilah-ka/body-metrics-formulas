@@ -13,3 +13,5 @@ export * from "./absiReferenceTable.js";
 export * from "./ffmi.js";
 export * from "./lbm.js";
 export * from "./maintenance.js";
+export * from "./nhanesPercentiles.js";
+export * from "./percentile.js";
