@@ -1,6 +1,6 @@
 {
   "name": "body-metrics-formulas",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Reference implementations of body-composition metrics (BRI, RFM, waist-to-height ratio, ABSI, FFMI, lean body mass) checked against their source papers, plus US population percentiles from NHANES 2021-2023.",
   "license": "MIT",
   "type": "module",
