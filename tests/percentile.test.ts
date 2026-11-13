@@ -96,10 +96,10 @@ describe("NHANES build script", () => {
 
   it("decodes IBM floating-point numbers from SAS transport files", () => {
     // 1.0 = 0x41 10 00 … ; 100.0 = 0x42 64 00 … ; -2.5 = 0xC1 28 00 … ; "." = missing
-    expect(ibmDouble(Buffer.from([0x41, 0x10, 0, 0, 0, 0, 0, 0]), 0)).toBe(1);
-    expect(ibmDouble(Buffer.from([0x42, 0x64, 0, 0, 0, 0, 0, 0]), 0)).toBe(100);
-    expect(ibmDouble(Buffer.from([0xc1, 0x28, 0, 0, 0, 0, 0, 0]), 0)).toBe(-2.5);
-    expect(ibmDouble(Buffer.from([0x2e, 0, 0, 0, 0, 0, 0, 0]), 0)).toBeNull();
+    expect(ibmDouble(new Uint8Array([0x41, 0x10, 0, 0, 0, 0, 0, 0]), 0)).toBe(1);
+    expect(ibmDouble(new Uint8Array([0x42, 0x64, 0, 0, 0, 0, 0, 0]), 0)).toBe(100);
+    expect(ibmDouble(new Uint8Array([0xc1, 0x28, 0, 0, 0, 0, 0, 0]), 0)).toBe(-2.5);
+    expect(ibmDouble(new Uint8Array([0x2e, 0, 0, 0, 0, 0, 0, 0]), 0)).toBeNull();
   });
 
   it("weights percentiles by survey weight", () => {

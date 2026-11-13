@@ -45,16 +45,21 @@ Live version: [thebodyindex.com/body-percentile-calculator](https://thebodyindex
 
 ## Usage
 
-No npm package is published; clone the file(s) you need, or the whole repo:
+```bash
+npm install body-metrics-formulas
+```
 
 ```ts
-import { calculateBri, calculateRfm } from "./src/index.ts";
+import { calculateBri, calculateRfm, percentileAmongUsAdults } from "body-metrics-formulas";
 
 calculateBri({ heightCm: 175, waistCm: 90 });
 // => { value: 3.63, band: { key: "average", label: "Average range", ... }, sources: [...] }
 
 calculateRfm({ heightCm: 165, waistCm: 80, sex: "female" });
 // => { value: 34.8, unit: "%", band: {...}, sources: [...] }
+
+percentileAmongUsAdults("waist", "male", 45, 101.5);
+// => { percentile: 50, beyondRange: null, ageGroup: "40-49", sampleSize: 340 }
 ```
 
 Every function returns the same shape: `{ value, unit, band, interpretationKey, inputsEcho, sources }`.
